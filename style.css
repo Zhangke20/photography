@@ -941,36 +941,44 @@ img.lazy-loaded {
   }
 
   .gallery__item-caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin-top: 0;
-    padding: 16px 14px 12px;
+    position: static;
+    margin-top: 8px;
+    padding: 0;
     opacity: 1;
     transform: none;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    background: transparent;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     pointer-events: none;
   }
 
   .gallery__item-title {
-    color: #fff;
-    letter-spacing: 0.08em;
-    font-size: clamp(13px, 2.6vw, 16px);
+    display: block;
+    color: var(--fg);
+    letter-spacing: 0.06em;
+    font-size: clamp(12px, 2.5vw, 14px);
+    text-transform: uppercase;
+    max-width: 68%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .gallery__item-cta {
     display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
     font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--fg-dim);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .gallery__item:active .gallery__item-inner {
