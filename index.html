@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objectif Zonard — Photographie</title>
+  <meta name="description"
+    content="Portfolio photographique de Objectif Zonard. Photographie urbaine, nuit, portrait, voyage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+  <header id="site-header">
+    <a href="#/" id="site-logo" class="nav-link">Objectif Zonard</a>
+    <button id="menu-toggle" class="nav-link" aria-label="Menu">Index</button>
+  </header>
+
+  <!-- ═══════════════════════ MENU OVERLAY ═══════════════════════ -->
+  <nav id="menu-overlay" class="menu-overlay" aria-hidden="true">
+    <button id="menu-close" class="menu-close" aria-label="Fermer le menu">&times;</button>
+    <div class="menu-content">
+      <div class="menu-section">
+        <h3 class="menu-heading">Works</h3>
+        <ul id="menu-works-list" class="menu-list"></ul>
+      </div>
+      <div class="menu-section menu-footer-section">
+        <a href="https://www.instagram.com/objectif_zonard/" target="_blank" rel="noopener"
+          class="menu-social">Instagram ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ VIEWS CONTAINER ═══════════════════════ -->
+  <main id="app">
+
+    <!-- LANDING VIEW -->
+    <section id="view-landing" class="view">
+      <div class="landing">
+        <div class="landing__image-wrapper">
+          <img id="landing-hero-img" class="landing__image" alt="Objectif Zonard" loading="eager">
+        </div>
+        <div class="landing__content">
+          <h1 class="landing__title">Objectif<br>Zonard</h1>
+          <p class="landing__subtitle">Photographie</p>
+          <a href="#/gallery" class="landing__enter">Voir les travaux</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY VIEW -->
+    <section id="view-gallery" class="view">
+      <div class="gallery">
+        <div class="gallery__header">
+          <h2 class="gallery__title">Works</h2>
+          <p class="gallery__count" id="gallery-count"></p>
+        </div>
+        <div id="gallery-grid" class="gallery__grid"></div>
+      </div>
+    </section>
+
+    <!-- PROJECT VIEW -->
+    <section id="view-project" class="view">
+      <div class="project">
+        <div class="project__header">
+          <h2 class="project__title" id="project-title"></h2>
+          <p class="project__meta" id="project-meta"></p>
+        </div>
+        <div id="project-images" class="project__images"></div>
+        <div class="project__nav">
+          <a id="project-prev" class="project__nav-link" href="#">← Précédent</a>
+          <a href="#/gallery" class="project__nav-link project__nav-link--back">Tous les travaux</a>
+          <a id="project-next" class="project__nav-link" href="#">Suivant →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ LIGHTBOX ═══════════════════════ -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="lightbox-close" class="lightbox__close" aria-label="Fermer">&times;</button>
+    <img id="lightbox-img" class="lightbox__img" alt="">
+    <button id="lightbox-prev" class="lightbox__arrow lightbox__arrow--prev" aria-label="Précédent">‹</button>
+    <button id="lightbox-next" class="lightbox__arrow lightbox__arrow--next" aria-label="Suivant">›</button>
+    <p id="lightbox-counter" class="lightbox__counter"></p>
+  </div>
+
+  <!-- ═══════════════════════ CURSOR FOLLOWER ═══════════════════════ -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+
+  <script src="photos-data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
