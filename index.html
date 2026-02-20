@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Objectif Zonard — Photographie</title>
+  <title>Objectif Zonard &mdash; Photographie</title>
   <meta name="description"
     content="Portfolio photographique de Objectif Zonard. Photographie urbaine, nuit, portrait, voyage.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +17,21 @@
 
 <body>
 
-  <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• NAVIGATION â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <header id="site-header">
     <a href="#/" id="site-logo" class="nav-link">Objectif Zonard</a>
+    <a href="https://www.instagram.com/objectif_zonard/" id="site-instagram" class="nav-link" target="_blank" rel="noopener"
+      aria-label="Instagram Objectif Zonard">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" ry="5"></rect>
+        <circle cx="12" cy="12" r="4.2"></circle>
+        <circle cx="17.3" cy="6.7" r="1.1"></circle>
+      </svg>
+    </a>
     <button id="menu-toggle" class="nav-link" aria-label="Menu">Index</button>
   </header>
 
-  <!-- ═══════════════════════ MENU OVERLAY ═══════════════════════ -->
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MENU OVERLAY â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <nav id="menu-overlay" class="menu-overlay" aria-hidden="true">
     <button id="menu-close" class="menu-close" aria-label="Fermer le menu">&times;</button>
     <div class="menu-content">
@@ -33,12 +41,12 @@
       </div>
       <div class="menu-section menu-footer-section">
         <a href="https://www.instagram.com/objectif_zonard/" target="_blank" rel="noopener"
-          class="menu-social">Instagram ↗</a>
+          class="menu-social">Instagram &nearr;</a>
       </div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════ VIEWS CONTAINER ═══════════════════════ -->
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• VIEWS CONTAINER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <main id="app">
 
     <!-- LANDING VIEW -->
@@ -72,28 +80,33 @@
         <div class="project__header">
           <h2 class="project__title" id="project-title"></h2>
           <p class="project__meta" id="project-meta"></p>
+          <div class="project__header-nav">
+            <a id="project-prev-top" class="project__nav-link project__nav-link--prev" href="#">&larr; Pr&eacute;c&eacute;dent</a>
+            <a href="#/gallery" class="project__nav-link project__nav-link--back">Voir tous les travaux</a>
+            <a id="project-next-top" class="project__nav-link project__nav-link--next" href="#">Suivant &rarr;</a>
+          </div>
         </div>
         <div id="project-images" class="project__images"></div>
         <div class="project__nav">
-          <a id="project-prev" class="project__nav-link" href="#">← Précédent</a>
-          <a href="#/gallery" class="project__nav-link project__nav-link--back">Tous les travaux</a>
-          <a id="project-next" class="project__nav-link" href="#">Suivant →</a>
+          <a id="project-prev" class="project__nav-link project__nav-link--prev" href="#">&larr; Pr&eacute;c&eacute;dent</a>
+          <a href="#/gallery" class="project__nav-link project__nav-link--back">Voir tous les travaux</a>
+          <a id="project-next" class="project__nav-link project__nav-link--next" href="#">Suivant &rarr;</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ═══════════════════════ LIGHTBOX ═══════════════════════ -->
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• LIGHTBOX â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button id="lightbox-close" class="lightbox__close" aria-label="Fermer">&times;</button>
     <img id="lightbox-img" class="lightbox__img" alt="">
-    <button id="lightbox-prev" class="lightbox__arrow lightbox__arrow--prev" aria-label="Précédent">‹</button>
-    <button id="lightbox-next" class="lightbox__arrow lightbox__arrow--next" aria-label="Suivant">›</button>
+    <button id="lightbox-prev" class="lightbox__arrow lightbox__arrow--prev" aria-label="Pr&eacute;c&eacute;dent">&#8249;</button>
+    <button id="lightbox-next" class="lightbox__arrow lightbox__arrow--next" aria-label="Suivant">&#8250;</button>
     <p id="lightbox-counter" class="lightbox__counter"></p>
   </div>
 
-  <!-- ═══════════════════════ CURSOR FOLLOWER ═══════════════════════ -->
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CURSOR FOLLOWER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
   <div id="cursor-dot" class="cursor-dot"></div>
 
   <script src="photos-data.js"></script>
@@ -101,3 +114,4 @@
 </body>
 
 </html>
+

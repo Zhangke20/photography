@@ -1,16 +1,16 @@
-/* ═══════════════════════════════════════════════════════════
-   OBJECTIF ZONARD — Portfolio SPA Engine
+﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   OBJECTIF ZONARD â€” Portfolio SPA Engine
    Hash-based routing, page transitions, lazy loading, lightbox
-   ═══════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 (function () {
   'use strict';
 
-  // ─── DATA ───
+  // â”€â”€â”€ DATA â”€â”€â”€
   const DATA = window.PHOTO_DATA || { works: [] };
   const works = DATA.works || [];
 
-  // ─── DOM REFS ───
+  // â”€â”€â”€ DOM REFS â”€â”€â”€
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
@@ -21,6 +21,8 @@
   const projectTitle = $('#project-title');
   const projectMeta = $('#project-meta');
   const projectImages = $('#project-images');
+  const projectPrevTop = $('#project-prev-top');
+  const projectNextTop = $('#project-next-top');
   const projectPrev = $('#project-prev');
   const projectNext = $('#project-next');
   const galleryCount = $('#gallery-count');
@@ -36,17 +38,18 @@
   const lightboxCounter = $('#lightbox-counter');
   const cursorDot = $('#cursor-dot');
   const heroImg = $('#landing-hero-img');
+  const instagramUrl = 'https://www.instagram.com/objectif_zonard/';
 
-  // ─── STATE ───
+  // â”€â”€â”€ STATE â”€â”€â”€
   let currentView = 'landing';
   let currentWorkIndex = -1;
   let lightboxImages = [];
   let lightboxIndex = 0;
   let isTransitioning = false;
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // ROUTER
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function getRoute() {
     const hash = window.location.hash || '#/gallery'; // Default to gallery
     if (hash === '#/' || hash === '#' || hash === '') return { view: 'gallery' };
@@ -109,16 +112,16 @@
 
   window.addEventListener('hashchange', () => navigate(getRoute()));
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // LANDING (Bypassed)
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function initLanding() {
     // Keep logic for potential future use or hidden hero
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // GALLERY
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function renderGallery() {
     galleryGrid.innerHTML = '';
     galleryCount.textContent = `${works.length} projets`;
@@ -136,15 +139,16 @@
         </div>
         <div class="gallery__item-caption">
           <span class="gallery__item-title">${work.title}</span>
+          <span class="gallery__item-cta" aria-hidden="true">Voir le projet &rarr;</span>
         </div>
       `;
       galleryGrid.appendChild(item);
     });
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // PROJECT
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function renderProject(workId) {
     const workIndex = works.findIndex(w => w.id === workId);
     if (workIndex === -1) {
@@ -156,7 +160,18 @@
     const work = works[workIndex];
 
     projectTitle.textContent = work.title;
-    projectMeta.textContent = `${work.count} photographie${work.count > 1 ? 's' : ''} — @objectif_zonard`;
+    projectMeta.innerHTML = `
+      ${work.count} photographie${work.count > 1 ? 's' : ''}
+      <span class="project__meta-sep" aria-hidden="true">&mdash;</span>
+      <a class="project__meta-instagram" href="${instagramUrl}" target="_blank" rel="noopener" aria-label="Instagram @objectif_zonard">
+        <span>@objectif_zonard</span>
+        <svg class="project__meta-instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="5" ry="5"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.3" cy="6.7" r="1.1"></circle>
+        </svg>
+      </a>
+    `;
 
     // Render images
     projectImages.innerHTML = '';
@@ -166,7 +181,7 @@
       lightboxImages.push(imgPath);
       const wrapper = document.createElement('div');
       wrapper.className = 'project__img-wrapper';
-      wrapper.innerHTML = `<img data-src="${imgPath}" alt="${work.title} — ${i + 1}" loading="lazy">`;
+      wrapper.innerHTML = `<img data-src="${imgPath}" alt="${work.title} - ${i + 1}" loading="lazy">`;
       wrapper.addEventListener('click', () => openLightbox(i));
       projectImages.appendChild(wrapper);
     });
@@ -175,16 +190,31 @@
     const prevIndex = (workIndex - 1 + works.length) % works.length;
     const nextIndex = (workIndex + 1) % works.length;
 
+    const prevLabel = `\u2190 ${works[prevIndex].title}`;
+    const nextLabel = `${works[nextIndex].title} \u2192`;
+
     projectPrev.href = `#/work/${works[prevIndex].id}`;
-    projectPrev.textContent = `← ${works[prevIndex].title}`;
+    projectPrev.textContent = prevLabel;
+
+    if (projectPrevTop) {
+      projectPrevTop.href = projectPrev.href;
+      projectPrevTop.textContent = prevLabel;
+      projectPrevTop.setAttribute('aria-label', `Projet precedent : ${works[prevIndex].title}`);
+    }
 
     projectNext.href = `#/work/${works[nextIndex].id}`;
-    projectNext.textContent = `${works[nextIndex].title} →`;
+    projectNext.textContent = nextLabel;
+
+    if (projectNextTop) {
+      projectNextTop.href = projectNext.href;
+      projectNextTop.textContent = nextLabel;
+      projectNextTop.setAttribute('aria-label', `Projet suivant : ${works[nextIndex].title}`);
+    }
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // LAZY LOADING + SCROLL REVEAL
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   let lazyObserver, revealObserver;
 
   function observeImages() {
@@ -226,9 +256,9 @@
     });
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // LIGHTBOX
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function openLightbox(index) {
     lightboxIndex = index;
     updateLightbox();
@@ -276,9 +306,9 @@
     if (e.key === 'ArrowRight') lightboxNextFn();
   });
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // MENU
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function openMenu() {
     menuOverlay.classList.add('is-open');
     menuOverlay.setAttribute('aria-hidden', 'false');
@@ -312,9 +342,9 @@
     });
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // CUSTOM CURSOR
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function initCursor() {
     if (window.matchMedia('(max-width: 900px)').matches) return;
     if (!cursorDot) return;
@@ -352,18 +382,18 @@
     });
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // SMOOTH SCROLL (kinetic feel)
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function initSmoothScroll() {
     // Use native smooth scroll + add slight inertia via CSS
     // For a full kinetic scroll we'd wrap content, but keep it simple and performant
     document.documentElement.style.scrollBehavior = 'smooth';
   }
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // KEYBOARD NAVIGATION
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   document.addEventListener('keydown', (e) => {
     if (lightbox.classList.contains('is-open')) return;
 
@@ -372,9 +402,9 @@
     }
   });
 
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   // INIT
-  // ═══════════════════════════════════════════════════════════
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
   function init() {
     initLanding();
     buildMenu();
